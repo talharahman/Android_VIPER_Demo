@@ -15,7 +15,8 @@ import com.example.viperdemo.R
 import com.example.viperdemo.databinding.ArticleItemviewBinding
 import com.example.viperdemo.entity.Article
 
-class ArticlesAdapter() : ListAdapter<Article, ArticlesAdapter.ArticlesViewHolder>(DiffCallback) {
+class ArticlesAdapter(private var listener: OnClickListener)
+    : ListAdapter<Article, ArticlesAdapter.ArticlesViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -30,13 +31,14 @@ class ArticlesAdapter() : ListAdapter<Article, ArticlesAdapter.ArticlesViewHolde
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesViewHolder {
         return ArticlesViewHolder(
             ArticleItemviewBinding.inflate(
-                LayoutInflater.from(parent.context)
-            )
-        )
+                LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: ArticlesViewHolder, position: Int) {
         val article = getItem(position)
+        holder.itemView.setOnClickListener {
+            listener.onClick(article)
+        }
         holder.bind(article)
     }
 
@@ -47,6 +49,10 @@ class ArticlesAdapter() : ListAdapter<Article, ArticlesAdapter.ArticlesViewHolde
             binding.article = item
             binding.executePendingBindings()
         }
+    }
+
+    class OnClickListener(val listener: (Article) -> Unit) {
+        fun onClick(article: Article) = listener(article)
     }
 }
 

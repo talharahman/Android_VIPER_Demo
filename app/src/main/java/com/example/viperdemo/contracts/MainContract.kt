@@ -13,6 +13,7 @@ interface MainContract {
     }
 
     interface Presenter {
+        fun articleSelected(article: Article?)
         fun onViewCreated()
         fun onDestroy()
     }

@@ -12,7 +12,7 @@ data class Article(
     val source: Source,
     val title: String,
     val url: String,
-    @Json(name = "urlToImage") val image: String) : Parcelable
+    @Json(name = "urlToImage") val image: String?) : Parcelable
 
 @Parcelize
 data class Source(val name: String) : Parcelable

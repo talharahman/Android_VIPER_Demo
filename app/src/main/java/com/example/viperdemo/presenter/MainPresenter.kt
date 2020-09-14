@@ -2,14 +2,22 @@ package com.example.viperdemo.presenter
 
 import android.content.Context
 import android.util.Log
+import com.example.viperdemo.BaseApplication
 import com.example.viperdemo.contracts.MainContract
 import com.example.viperdemo.entity.Article
 import com.example.viperdemo.interactor.MainInteractor
+import com.example.viperdemo.view.ReaderActivity
+import ru.terrakok.cicerone.Router
 
 class MainPresenter(private var view: MainContract.View?, private val context: Context)
     : MainContract.Presenter {
 
     private var interactor: MainContract.Interactor? = MainInteractor()
+    private val router: Router? by lazy { BaseApplication.INSTANCE.baseRouter.router }
+
+    override fun articleSelected(article: Article?) {
+        router?.navigateTo(ReaderActivity.TAG, article)
+    }
 
     override fun onViewCreated() {
         view?.showLoading()

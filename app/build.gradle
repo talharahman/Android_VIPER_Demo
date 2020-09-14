@@ -59,9 +59,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
 
-    implementation "org.jetbrains.anko:anko:$anko_version"
-
-    implementation "com.github.bumptech.glide:glide:$version_glide"
+    implementation "org.jetbrains.anko:anko:0.10.1"
+    implementation 'ru.terrakok.cicerone:cicerone:2.1.0'
+    implementation "com.github.bumptech.glide:glide:4.9.0"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
